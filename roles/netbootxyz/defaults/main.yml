@@ -84,7 +84,7 @@ releases:
     base_dir: alpine
     enabled: true
     menu: linux
-    mirror: http://dl-cdn.alpinelinux.org
+    mirror: https://mirrors.aliyun.com
     name: Alpine Linux
     versions:
     - code_name: v3.11
@@ -102,7 +102,7 @@ releases:
     base_dir: archlinux
     enabled: true
     menu: linux
-    mirror: mirror.rackspace.com
+    mirror: https://mirrors.aliyun.com
     name: Arch Linux
     versions:
     - code_name: 2020.04.01
@@ -118,7 +118,7 @@ releases:
     base_dir: centos
     enabled: true
     menu: linux
-    mirror: http://mirror.centos.org
+    mirror: https://mirrors.aliyun.com
     name: CentOS
     versions:
     - code_name: 8.1.1911
@@ -139,11 +139,11 @@ releases:
     - code_name: 31.20200113.3.1
       name: '31'
   debian:
-    archive_mirror: http://archive.debian.org
+    archive_mirror: https://mirrors.aliyun.com
     base_dir: debian
     enabled: true
     menu: linux
-    mirror: http://deb.debian.org
+    mirror: https://mirrors.aliyun.com
     name: Debian
     versions:
       stable:
@@ -175,7 +175,7 @@ releases:
     base_dir: fedora
     enabled: true
     menu: linux
-    mirror: http://mirrors.kernel.org
+    mirror: https://mirrors.aliyun.com
     name: Fedora
     versions:
     - code_name: '31'
@@ -236,7 +236,7 @@ releases:
     base_dir: kali
     enabled: true
     menu: linux
-    mirror: http://http.kali.org
+    mirror: https://mirrors.aliyun.com
     name: Kali Linux
     versions:
     - code_name: rolling
@@ -255,7 +255,7 @@ releases:
     base_dir: mageia
     enabled: true
     menu: linux
-    mirror: http://mirrors.kernel.org
+    mirror: https://mirrors.tuna.tsinghua.edu.cn
     name: Mageia
     versions:
     - code_name: '7.1'
@@ -294,10 +294,10 @@ releases:
       image_ver: '66'
       name: 6.6 Latest Snapshot
   opensuse:
-    base_dir: distribution/leap
+    base_dir: opensuse/distribution/leap
     enabled: true
     menu: linux
-    mirror: http://download.opensuse.org
+    mirror: https://mirrors.aliyun.com
     name: OpenSUSE
     versions:
     - code_name: '15.1'
@@ -337,10 +337,10 @@ releases:
     menu: linux
     name: Red Hat Enterprise Linux
   scientific:
-    base_dir: linux/scientific
+    base_dir: scientificlinux
     enabled: true
     menu: linux
-    mirror: http://ftp1.scientificlinux.org
+    mirror: https://mirrors.aliyun.com
     name: Scientific Linux
     versions:
     - code_name: '7.7'
@@ -355,7 +355,7 @@ releases:
     base_dir: slackware
     enabled: true
     menu: linux
-    mirror: http://mirror.rackspace.com
+    mirror: https://mirrors.tuna.tsinghua.edu.cn
     name: Slackware
     versions:
     - code_name: current
@@ -386,7 +386,7 @@ releases:
   tinycore:
     enabled: true
     menu: linux
-    mirror: http://distro.ibiblio.org/tinycorelinux
+    mirror: https://mirrors.tuna.tsinghua.edu.cn/tinycorelinux
     name: Tiny Core Linux
     versions:
     - arch: x86
@@ -490,11 +490,11 @@ releases:
       kernel: /dCore/x86_64/release/dCore-stretch64/vmlinuz-stretch64
       name: dCore Stretch Plus
   ubuntu:
-    archive_mirror: http://old-releases.ubuntu.com
+    archive_mirror: https://mirrors.aliyun.com
     base_dir: ubuntu
     enabled: true
     menu: linux
-    mirror: http://archive.ubuntu.com
+    mirror: https://mirrors.aliyun.com
     name: Ubuntu
     versions:
     - code_name: focal
@@ -516,8 +516,8 @@ sigs_dir: '{{ netbootxyz_root }}/sigs'
 sigs_enabled: false
 sigs_location: http://${boot_domain}/sigs/
 sigs_menu: false
-site_name: netboot.xyz
-time_server: 0.pool.ntp.org
+site_name: netbootxyz.cn
+time_server: ntp.aliyun.com
 utilitiesefi:
   4mlinux:
     enabled: true
