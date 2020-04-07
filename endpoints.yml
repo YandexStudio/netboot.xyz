@@ -546,7 +546,7 @@ endpoints:
     flavor: eoan
     kernel: voyager-eoan-squash
   kde-neon-user:
-    path: /ubuntu-squash/releases/download/20200326-1117-4cec4542/
+    path: /ubuntu-squash/releases/download/20200402-1115-4cec4542/
     files:
     - vmlinuz
     - filesystem.squashfs
@@ -728,7 +728,7 @@ endpoints:
     os: dban
     version: 2.3.0
   sparky-stable-mingui:
-    path: /debian-squash/releases/download/5.10.1-12006f2d/
+    path: /debian-squash/releases/download/5.11-12006f2d/
     files:
     - filesystem.squashfs
     - initrd
@@ -738,7 +738,7 @@ endpoints:
     flavor: xfce-min
     kernel: sparky-stable-mingui
   sparky-stable-gui:
-    path: /debian-squash/releases/download/5.10.1-3d9b8c14/
+    path: /debian-squash/releases/download/5.11-3d9b8c14/
     files:
     - filesystem.squashfs
     - initrd
@@ -748,7 +748,7 @@ endpoints:
     flavor: xfce
     kernel: sparky-stable-gui
   sparky-stable-lxqt:
-    path: /debian-squash/releases/download/5.10.1-d6fdf079/
+    path: /debian-squash/releases/download/5.11-d6fdf079/
     files:
     - filesystem.squashfs
     - initrd
@@ -768,7 +768,7 @@ endpoints:
     flavor: xfce-min
     kernel: sparky-rolling-mingui
   sparky-rolling-gui:
-    path: /debian-squash/releases/download/2020.03.1-ec74d61f/
+    path: /debian-squash/releases/download/5.11-ec74d61f/
     files:
     - filesystem.squashfs
     - initrd
@@ -778,7 +778,7 @@ endpoints:
     flavor: xfce
     kernel: sparky-rolling-gui
   sparky-rolling-lxqt:
-    path: /debian-squash/releases/download/2020.03.1-27d3b4fa/
+    path: /debian-squash/releases/download/5.11-27d3b4fa/
     files:
     - filesystem.squashfs
     - initrd
@@ -916,7 +916,7 @@ endpoints:
     os: rescatux
     version: current
   systemrescue:
-    path: /asset-mirror/releases/download/6.1.1-055507d5/
+    path: /asset-mirror/releases/download/6.1.2-055507d5/
     files:
     - initrd
     - vmlinuz
@@ -932,7 +932,7 @@ endpoints:
     os: caine
     version: '11'
   nitrux-stable:
-    path: /ubuntu-squash/releases/download/2020.02.28-53f87b85/
+    path: /ubuntu-squash/releases/download/2020.03.27-53f87b85/
     files:
     - initrd
     - vmlinuz
@@ -988,7 +988,7 @@ endpoints:
     os: zeninstall
     version: current
   gentoo:
-    path: /asset-mirror/releases/download/20200329T214502Z-3db955b8/
+    path: /asset-mirror/releases/download/20200401T214502Z-3db955b8/
     files:
     - image.squashfs
     - initrd
