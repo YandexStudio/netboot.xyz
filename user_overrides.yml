@@ -6,10 +6,10 @@ generate_disks: true
 generate_checksums: true
 
 # set desired site name
-#site_name: mysitename.com
+site_name: netbootxyz.cn
 
 # set desired boot domain
-#boot_domain: boot.mysitename.com
+boot_domain: boot.netbootxyz.cn
 
 # set boot version
 #boot_version: "2.x"
@@ -37,4 +37,4 @@ generate_checksums: true
 
 # set licensed media locations in boot.cfg
 # win_base_url:
-# rhel_base_url: 
+# rhel_base_url:
