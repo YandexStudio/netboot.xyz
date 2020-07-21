@@ -73,7 +73,6 @@ ipxe_ca_filename: ca-ipxe-org.crt
 ipxe_ca_url: http://ca.ipxe.org/ca.crt
 ipxe_repo: https://github.com/ipxe/ipxe
 ipxe_source_dir: /usr/src/ipxe
-ipxe_trust_args: TRUST={{ ipxe_ca_location }}
 live_endpoint: https://github.com/netbootxyz
 memdisk_location: http://${boot_domain}/memdisk
 netbootxyz_conf_dir: /etc/netbootxyz
@@ -105,8 +104,8 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: Arch Linux
     versions:
-    - code_name: 2020.05.01
-      name: 2020.05.01
+    - code_name: 2020.07.01
+      name: 2020.07.01
   blackarch:
     enabled: true
     menu: linux
@@ -121,6 +120,8 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: CentOS
     versions:
+    - code_name: 8.2.2004
+      name: '8.2'
     - code_name: 8.1.1911
       name: '8.1'
     - code_name: 8.0.1905
@@ -130,14 +131,18 @@ releases:
     - code_name: 7
       name: 7.x Latest
   coreos:
-    base_dir: prod/streams/stable/builds
+    base_dir: prod/streams
     enabled: true
     menu: linux
     mirror: https://builds.coreos.fedoraproject.org
     name: Fedora CoreOS
     versions:
-    - code_name: 31.20200113.3.1
-      name: '31'
+    - code_name: 32.20200629.3.0
+      name: stable
+    - code_name: 32.20200629.2.0
+      name: testing
+    - code_name: 32.20200625.1.0
+      name: next
   debian:
     archive_mirror: https://mirrors.aliyun.com
     base_dir: debian
@@ -158,19 +163,21 @@ releases:
         name: sid (unstable)
   devuan:
     base_dir: devuan
-    enabled: false
+    enabled: true
     menu: linux
-    mirror: http://auto.mirror.devuan.org
+    mirror: http://deb.devuan.org
     name: Devuan
     versions:
       stable:
-      - code_name: ascii
-        name: ascii (stable)
-      - code_name: jessie
-        name: 1.0 (jessie)
-      testing:
       - code_name: beowulf
-        name: beowulf (testing)
+        name: 3.0.0 Beowulf (stable)
+      - code_name: ascii
+        name: 2.1 ASCII (oldstable)
+      - code_name: jessie
+        name: 1.0 Jessie (oldoldstable)
+      testing:
+      - code_name: chimaera
+        name: Chimaera (testing)
   fedora:
     base_dir: fedora
     enabled: true
@@ -222,16 +229,13 @@ releases:
     mirror: https://downloads.ipfire.org
     name: IPFire
     versions:
-    - code_name: 2.25-core144
-      name: 2.25 Core144
+    - code_name: 2.25-core146
+      name: 2.25 Core146
   k3os:
     enabled: true
     menu: linux
-    mirror: https://github.com/rancher/k3os/releases/download/
+    mirror: https://github.com/rancher/k3os/releases
     name: k3OS
-    versions:
-    - code_name: v0.8.0
-      name: v0.8.0
   kali:
     base_dir: kali
     enabled: true
@@ -295,6 +299,8 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: OpenSUSE
     versions:
+    - code_name: '15.2'
+      name: openSUSE Leap 15.2
     - code_name: '15.1'
       name: openSUSE Leap 15.1
     - code_name: '15.0'
@@ -366,18 +372,38 @@ releases:
     mirror: https://netboot.joyent.com/os/
     name: SmartOS
     versions:
+    - code_name: 20200716T142843Z
+      name: 20200716T142843Z
+    - code_name: 20200715T195011Z
+      name: 20200715T195011Z
+    - code_name: 20200701T231659Z
+      name: 20200701T231659Z
+    - code_name: 20200617T233107Z
+      name: 20200617T233107Z
+    - code_name: 20200603T203505Z
+      name: 20200603T203505Z
     - code_name: 20200520T174734Z
       name: 20200520T174734Z
-    - code_name: 20200506T235114Z
-      name: 20200506T235114Z
-    - code_name: 20200424T174452Z
-      name: 20200424T174452Z
-    - code_name: 20200422T203030Z
-      name: 20200422T203030Z
-    - code_name: 20200408T231825Z
-      name: 20200408T231825Z
-    - code_name: 20200326T183047Z
-      name: 20200326T183047Z
+  talos:
+    enabled: true
+    menu: linux
+    mirror: https://github.com/talos-systems/talos/releases
+    name: Talos
+    platforms:
+    - key: metal
+      name: Bare Metal
+    - key: aws
+      name: AWS
+    - key: azure
+      name: Azure
+    - key: digital-ocean
+      name: Digital Ocean
+    - key: gcp
+      name: GCP
+    - key: packet
+      name: Packet
+    - key: vmware
+      name: VMware
   tinycore:
     enabled: true
     menu: linux
@@ -513,6 +539,13 @@ sigs_location: http://${boot_domain}/sigs/
 sigs_menu: false
 site_name: netbootxyz.cn
 time_server: ntp.aliyun.com
+
+utilitiesarm:
+  placeholder:
+    enabled: false
+    name: placeholder
+    type: direct
+
 utilitiesefi:
   4mlinux:
     enabled: true
