@@ -6,6 +6,20 @@ bootloader_disks:
 bootloader_http_enabled: true
 bootloader_https_enabled: true
 bootloaders:
+  arm:
+  - desc: EFI w/ Simple Network Protocol, attempts to boot all net devices
+    ipxe_bin: snp.efi
+    output_bin: -arm64.efi
+    type: DHCP-snp
+  hybrid:
+  - desc: Used for CD/DVD, Virtual CDs, DRAC/iLO, VMware, Virtual Box
+    ipxe_bin: ipxe.iso
+    output_bin: -hybrid.iso
+    type: ISO
+  - desc: Used for creation of USB Keys
+    ipxe_bin: ipxe.usb
+    output_bin: -hybrid.usb
+    type: USB
   legacy:
   - desc: Used for CD/DVD, Virtual CDs, DRAC/iLO, VMware, Virtual Box
     ipxe_bin: ipxe.iso
@@ -31,6 +45,15 @@ bootloaders:
     ipxe_bin: undionly.kpxe
     output_bin: -undionly.kpxe
     type: DHCP-undionly
+  rpi:
+  - desc: Raspberry Pi 4 - USB/SD Card Image
+    ipxe_bin: rpi4-sdcard.img
+    output_bin: -rpi4-sdcard.img
+    type: USB/SD Card
+  - desc: Raspberry Pi 4 - EFI Image
+    ipxe_bin: snp.efi
+    output_bin: -rpi4-snp.efi
+    type: DHCP-snp
   uefi:
   - desc: EFI BIOS, works in Virtual Box EFI mode
     ipxe_bin: ipxe-efi.eiso
@@ -60,11 +83,14 @@ codesign_key_filename: codesign.key
 custom_generate_menus: false
 custom_github_menus: true
 custom_templates_dir: '{{ netbootxyz_conf_dir }}/custom'
+custom_url_menus: true
 generate_checksums: true
 generate_disks: true
 generate_disks_arm: false
 generate_disks_efi: true
+generate_disks_hybrid: false
 generate_disks_legacy: true
+generate_disks_rpi: false
 generate_menus: true
 generate_signatures: false
 generate_version_file: true
@@ -78,6 +104,9 @@ memdisk_location: http://${boot_domain}/memdisk
 netbootxyz_conf_dir: /etc/netbootxyz
 netbootxyz_root: /var/www/html
 pciids_url: https://raw.githubusercontent.com/netbootxyz/pciids/master/pciids.ipxe
+pipxe_branch: master
+pipxe_repo: https://github.com/netbootxyz/pipxe
+pipxe_source_dir: /usr/src/pipxe
 releases:
   alpinelinux:
     base_dir: alpine
@@ -86,8 +115,8 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: Alpine Linux
     versions:
-    - code_name: v3.12
-      name: '3.12'
+    - code_name: v3.13
+      name: '3.13'
     - code_name: edge
       name: Edge (development)
   anarchy:
@@ -104,8 +133,8 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: Arch Linux
     versions:
-    - code_name: 2020.07.01
-      name: 2020.07.01
+    - code_name: 2021.03.01
+      name: 2021.03.01
   blackarch:
     enabled: true
     menu: linux
@@ -120,12 +149,10 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: CentOS
     versions:
-    - code_name: 8.2.2004
-      name: '8.2'
-    - code_name: 8.1.1911
-      name: '8.1'
-    - code_name: 8.0.1905
-      name: '8.0'
+    - code_name: 8.3.2011
+      name: '8.3'
+    - code_name: 8
+      name: 8.x Latest
     - code_name: 8-stream
       name: 8.0 Stream
     - code_name: 7
@@ -137,12 +164,8 @@ releases:
     mirror: https://builds.coreos.fedoraproject.org
     name: Fedora CoreOS
     versions:
-    - code_name: 32.20200629.3.0
+    - code_name: 33.20210201.3.0
       name: stable
-    - code_name: 32.20200629.2.0
-      name: testing
-    - code_name: 32.20200625.1.0
-      name: next
   debian:
     archive_mirror: https://mirrors.aliyun.com
     base_dir: debian
@@ -179,18 +202,18 @@ releases:
       - code_name: chimaera
         name: Chimaera (testing)
   fedora:
-    base_dir: fedora
+    base_dir: pub/fedora/linux
     enabled: true
     menu: linux
     mirror: https://mirrors.aliyun.com
     name: Fedora
     versions:
-    - code_name: '32'
-      name: '32'
-    - code_name: '31'
-      name: '31'
-    - code_name: '30'
-      name: '30'
+    - code_name: 33
+      name: 33
+    - code_name: 32
+      name: 32
+    - code_name: 31
+      name: 31
   flatcar:
     enabled: true
     menu: linux
@@ -229,8 +252,8 @@ releases:
     mirror: https://downloads.ipfire.org
     name: IPFire
     versions:
-    - code_name: 2.25-core146
-      name: 2.25 Core146
+    - code_name: 2.25-core153
+      name: 2.25 Core153
   k3os:
     enabled: true
     menu: linux
@@ -245,16 +268,6 @@ releases:
     versions:
     - code_name: rolling
       name: Rolling Edition (2020.1)
-  livegrml:
-    enabled: true
-    menu: live
-    mirror: http://download.grml.org
-    name: Grml Live Linux
-    versions:
-    - code_name: grml-full
-      name: 2018.12 Full
-    - code_name: grml-small
-      name: 2018.12 Small
   mageia:
     base_dir: mageia
     enabled: true
@@ -277,6 +290,12 @@ releases:
     mirror: http://ftp.openbsd.org
     name: OpenBSD
     versions:
+    - code_name: '6.8'
+      image_ver: '68'
+      name: '6.8'
+    - code_name: '6.7'
+      image_ver: '67'
+      name: '6.7'
     - code_name: '6.6'
       image_ver: '66'
       name: '6.6'
@@ -286,12 +305,9 @@ releases:
     - code_name: '6.4'
       image_ver: '64'
       name: '6.4'
-    - code_name: '6.3'
-      image_ver: '63'
-      name: '6.3'
     - code_name: snapshots
-      image_ver: '66'
-      name: 6.6 Latest Snapshot
+      image_ver: '68'
+      name: 6.8 Latest Snapshot
   opensuse:
     base_dir: opensuse/distribution/leap
     enabled: true
@@ -317,13 +333,6 @@ releases:
     paths:
       7: /repo/OracleLinux/OL7/latest/x86_64
       8: /repo/OracleLinux/OL8/baseos/latest/x86_64
-  parrotsec:
-    enabled: true
-    menu: linux
-    name: Parrot Security
-    versions:
-    - code_name: stable
-      name: Stable Netinstall
   rancheros:
     base_dir: os/latest
     enabled: true
@@ -372,18 +381,14 @@ releases:
     mirror: https://netboot.joyent.com/os/
     name: SmartOS
     versions:
-    - code_name: 20200716T142843Z
-      name: 20200716T142843Z
-    - code_name: 20200715T195011Z
-      name: 20200715T195011Z
-    - code_name: 20200701T231659Z
-      name: 20200701T231659Z
-    - code_name: 20200617T233107Z
-      name: 20200617T233107Z
-    - code_name: 20200603T203505Z
-      name: 20200603T203505Z
-    - code_name: 20200520T174734Z
-      name: 20200520T174734Z
+    - code_name: 20210226T213821Z
+      name: 20210226T213821Z
+    - code_name: 20210225T124034Z
+      name: 20210225T124034Z
+    - code_name: 20210224T232633Z
+      name: 20210224T232633Z
+    - code_name: 20210211T163919Z
+      name: 20210211T163919Z
   talos:
     enabled: true
     menu: linux
@@ -412,13 +417,13 @@ releases:
     versions:
     - arch: x86
       code_name: core
-      initrd: /11.x/x86/release/distribution_files/core.gz
-      kernel: /11.x/x86/release/distribution_files/vmlinuz
+      initrd: /12.x/x86/release/distribution_files/core.gz
+      kernel: /12.x/x86/release/distribution_files/vmlinuz
       name: Core
     - arch: x86_64
       code_name: corepure
-      initrd: /11.x/x86_64/release/distribution_files/corepure64.gz
-      kernel: /11.x/x86_64/release/distribution_files/vmlinuz64
+      initrd: /12.x/x86_64/release/distribution_files/corepure64.gz
+      kernel: /12.x/x86_64/release/distribution_files/vmlinuz64
       name: CorePure
     - arch: x86
       code_name: dcorebionic
@@ -518,14 +523,23 @@ releases:
     mirror: https://mirrors.aliyun.com
     name: Ubuntu
     versions:
+    - code_name: groovy
+      name: 20.10 Groovy Gorilla
     - code_name: focal
-      name: 20.04 LTS Focal Fossa
-    - code_name: eoan
-      name: 19.10 Eoan Ermine
+      name: 20.04 LTS Focal Fossa (Subiquity)
+    - code_name: focal-legacy
+      name: 20.04 LTS Focal Fossa (Legacy)
     - code_name: bionic
       name: 18.04 LTS Bionic Beaver
     - code_name: xenial
       name: 16.04 LTS Xenial Xerus
+  vyos:
+    enabled: true
+    menu: linux
+    name: VyOS
+    versions:
+    - code_name: rolling
+      name: 1.3 rolling
   zeninstall:
     enabled: true
     menu: linux
@@ -680,3 +694,4 @@ utilitiespcbios:
     util_path: http://mirror.sysadminguide.net/ubcd/ubcd538.iso
     version: '538'
 wimboot_location: http://${boot_domain}/wimboot
+wimboot_upstream_url: https://github.com/ipxe/wimboot/releases/latest/download/wimboot
